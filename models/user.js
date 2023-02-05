@@ -17,40 +17,27 @@ const userSchema = Schema(
       enum: ["starter", "pro", "business"],
       default: "starter",
     },
-    token: String,
+    token: { type: String, default: null },
   },
   { versionKey: false, timestamps: true }
 );
 
 const joiRegisterSchema = Joi.object({
-    password: Joi.string().min(6).max(30).required(),
-    email: Joi.string()
-      .email({
-        minDomainSegments: 2,
-        tlds: { allow: ["com", "net"] },
-      })
-      .required(),
-      subscription: {
-        type: String,
-      }
-  });
+  password: Joi.string().min(6).max(30).required(),
+  email: Joi.string()
+    .email({
+      minDomainSegments: 2,
+      tlds: { allow: ["com", "net"] },
+    })
+    .required(),
+  subscription: {
+    type: String,
+  },
+});
 
-//   const joiLoginSchema = Joi.object({
-//     password: Joi.string().min(6).max(30).required(),
-//     email: Joi.string()
-//       .email({
-//         minDomainSegments: 2,
-//         tlds: { allow: ["com", "net"] },
-//       })
-//       .required(),
-//       subscription: {
-//         type: String,
-//       }
-//   });
+const User = model("user", userSchema);
 
-const User = model('user', userSchema);
-  
 module.exports = {
-    joiRegisterSchema,
-    User
-}
+  joiRegisterSchema,
+  User,
+};
