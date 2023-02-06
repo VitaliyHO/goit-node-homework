@@ -7,7 +7,7 @@ async function tokenValidation(req, res, next) {
   const [bearer, token] = authorization.split(" ");
 
   try {
-    if (bearer !== "Bearer") {
+    if (bearer !== "Bearer" || !token) {
       res.status(401).json({
         status: "unauthorized",
         code: 401,
