@@ -44,9 +44,19 @@ const joiRegisterSchema = Joi.object({
   },
 });
 
+const joiVerifySchema = Joi.object({
+  email: Joi.string()
+    .email({
+      minDomainSegments: 2,
+      tlds: { allow: ["com", "net"] },
+    })
+    .required(),
+});
+
 const User = model("user", userSchema);
 
 module.exports = {
   joiRegisterSchema,
+  joiVerifySchema,
   User,
 };

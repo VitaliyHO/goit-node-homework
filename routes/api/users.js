@@ -1,7 +1,7 @@
 const express = require('express');
 const { validation, controlWrapper, tokenValidation, upload } = require('../../middlewares');
 const { users: ctrl } = require('../../controllers');
-const { joiRegisterSchema } = require('../../models');
+const { joiRegisterSchema, joiVerifySchema } = require('../../models');
 
 
 const router = express.Router();
@@ -9,6 +9,8 @@ const router = express.Router();
 router.post("/register", validation(joiRegisterSchema), controlWrapper(ctrl.register));
 
 router.get("/verify/:verificationToken", controlWrapper(ctrl.verifyEmail));
+
+router.post("/verify", validation(joiVerifySchema), controlWrapper(ctrl.retryVerify));
 
 router.post("/login", validation(joiRegisterSchema), controlWrapper(ctrl.login));
 

@@ -1,4 +1,5 @@
 const sendEmail = require('./sendEmail');
+const verificationEmail = require('./verificationEmail');
 
 
-module.exports = sendEmail;
+module.exports = {sendEmail, verificationEmail};
