@@ -10,12 +10,12 @@ async function login(req, res) {
   const user = await User.findOne({ email });
 
   const isComparePass = bcrypt.compareSync(password, user.password);
-  if (!user || !isComparePass) {
+  if (!user || !user.verify || !isComparePass) {
     res.status(401).json({
       status: "unauthorized",
       code: 401,
       data: {
-        message: "Email or password is wrong",
+        message: "Email is wrong or not verificated, or password is wrong",
       },
     });
   }
