@@ -1,5 +1,6 @@
-const { verificationEmail, sendEmail } = require("../../helpers");
+// const { verificationEmail, sendEmail } = require("../../helpers");
 const { User } = require("../../models");
+const { verificationEmail, sendEmail } = require("../../services");
 
 async function retryVerify(req, res) {
   const { email } = req.body;

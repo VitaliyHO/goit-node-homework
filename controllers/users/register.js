@@ -1,8 +1,9 @@
 const { User } = require("../../models");
 const bcrypt = require("bcrypt");
 const gravatar = require("gravatar");
-const {sendEmail, verificationEmail} = require("../../helpers");
+// const {sendEmail, verificationEmail} = require("../../helpers");
 const { v4 } = require("uuid");
+const { verificationEmail, sendEmail } = require("../../services");
 
 async function register(req, res) {
   const { email, password } = req.body;
